@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Dummy Class</title>
+  <script src="dummy_cls.js"></script>
+  <script src="dummy_cls2.js"></script>
+</head>
+<body>
+  <div id="result"></div>
+  <script>
+    const p1 = new Point(2, 3);
+    const p2 = new Point(3, 4);
+
+    if (p1.isAbove(p2)) {
+      console.log("ABOVE");
+    } else {
+      console.log("NOT ABOVE");
+    }
+
+    const p3 = new Point2(3, 4);
+    console.log(p3.getX() + ", " + p3.getY());
+  </script>
+</body>
+</html>
