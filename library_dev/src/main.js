@@ -1,6 +1,6 @@
 var msg = require('./mod.js');
 
-function myDummy(x, y) {
+exports.myDummy = function(x, y) {
   x = x || 0;
   y = y || 0;
 
@@ -23,7 +23,3 @@ function myDummy(x, y) {
   this.getX = getX;
   this.getY = getY;
 }
-
-// var aaa = new myDummy();
-// aaa.getX();
-// aaa.getY();
