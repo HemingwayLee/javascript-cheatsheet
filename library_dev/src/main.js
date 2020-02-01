@@ -1,6 +1,6 @@
 var msg = require('./mod.js');
 
-exports.myDummy = function(x, y) {
+exports.myDummy = function(ele, x, y) {
   x = x || 0;
   y = y || 0;
 
@@ -15,8 +15,11 @@ exports.myDummy = function(x, y) {
   }
   
   var printLog = function() {
-    msg.runMod();
-    console.log("Hello, " + msg.myVar);
+    msg.runMod(ele);
+
+    var e = document.createElement('p');
+    e.innerHTML = "Hello, " + msg.myVar;
+    ele.appendChild(e);
   }
 
   // Define public interface

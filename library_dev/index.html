@@ -5,8 +5,9 @@
   <script src="app.min.js"></script>
 </head>
 <body>
+  <div id="res"></div>
   <script>
-    var d = new dummy.myDummy(3, 4);
+    var d = new dummy.myDummy(document.getElementById("res"), 3, 4);
     console.log(d.getX());
     console.log(d.getY());
   </script>
