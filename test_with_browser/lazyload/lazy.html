@@ -1,0 +1,16 @@
+<html>
+<body>
+  <a href="_blank" id="ccBtn">click me...</a>
+  <div id="pixel"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    jQuery(document).ready(function($){
+      $('#ccBtn').on('click', function(e){
+        e.preventDefault(); //stop click
+        $('#ccBtn').remove();
+        $("#pixel").html("<img src='https://image.freepik.com/free-icon/abc-squares_318-45632.jpg'/>");
+        });
+    });
+  </script>
+</body>
+</html>
