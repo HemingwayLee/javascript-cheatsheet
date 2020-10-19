@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8" />
+  <title>window object</title>
+  <script language="javascript" type="text/javascript">
+  var x = 123;
+  function foo() {
+    alert(this.x);
+  }
+  
+  foo();
+  window.foo();
+
+  alert(window.x);
+  </script>
+</html>
+
