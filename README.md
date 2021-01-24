@@ -3,6 +3,18 @@
 jupyter notebook
 ```
 
+# Learning
+* Webpack
+* React
+* Express
+* Typescript
+* Jest
+* GraphQL
+* Vue.js
+* Redux
+* Mocha
+
+
 ## installation
 Follow the guide of this [repo](https://github.com/n-riesco/ijavascript#installation)
 
