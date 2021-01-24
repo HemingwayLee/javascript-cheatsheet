@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>prevent checkout</title>
+</head>
+
+<body>
+  <p>Please click on the checkbox control.</p>
+  <form>
+    <label for="cb">Checkbox</label>
+    <input type="checkbox" id="cb"/>
+  </form>
+  <script>
+    document.querySelector("#cb").addEventListener("click", function(e){
+      alert("preventDefault will stop you from checking me")
+      e.preventDefault();
+    }, false);
+  </script>
+</body>
+</html>
+
+
