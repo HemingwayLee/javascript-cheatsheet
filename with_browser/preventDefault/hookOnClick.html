@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div>I will go to google</div>
+<a href="http://www.google.com.tw" onclick="alert('123');">Hook alert on a tag</a>
+<hr>
+<div>We will not go to google</div>
+<a href="http://www.google.com.tw" id="clickme">Dont go</a>
+<br>
+<a href="http://www.google.com.tw" onclick="alert('123'); return false;">Another way to prevent</a>
+
+<script>
+document.getElementById("clickme").addEventListener("click", function(e){
+  alert("123");
+  e.preventDefault();
+});
+</script>
+
+</body>
+</html>
+
+
