@@ -26,4 +26,7 @@ http://youmightnotneedjquery.com/
 
 ## We dont need Lodash when es6 is available
 https://www.sitepoint.com/lodash-features-replace-es6/ 
+
+## Frontend Optimization
+https://www.keycdn.com/blog/frontend-optimization
  
