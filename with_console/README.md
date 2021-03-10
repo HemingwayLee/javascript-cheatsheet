@@ -108,6 +108,38 @@ download(".hCL");
 download(".hCL");
 ```
 
+### pinterest optimization
+* with original filename
+```javascript
+(function(global) {
+  const toBlob = (src) => new Promise((res) => {
+    const img = document.createElement('img');
+    const c = document.createElement("canvas");
+    const ctx = c.getContext("2d");
+    img.onload = ({target}) => {
+      c.width = target.naturalWidth;
+      c.height = target.naturalHeight;
+      ctx.drawImage(target, 0, 0);
+      c.toBlob((b) => res(b), "image/jpeg", 0.75);
+    };
+    img.crossOrigin = "";
+
+    const arr = src.split('/');
+    img.src = src.replace(arr[3], 'originals');
+  });
+  const save = (blob, name = 'image.png') => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.target = '_blank';
+    a.download = name;
+    a.click();
+  };
+  global.download = (mySelector) => document.querySelectorAll(mySelector).forEach(async ({src}) => save(await toBlob(src), src.substring(src.lastIndexOf('/')+1)));
+})(window);
+
+download(".hCL");
+```
+
 
 ## Tester 
 * check number of images
