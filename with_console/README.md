@@ -90,7 +90,7 @@ document.querySelectorAll('.FFVAD').length;
 (function(global) {
   const uuid = () => Math.random().toString(36).substring(7);
   const toBlob = (src) => new Promise((res) => {
-    console.log(src);
+    console.log(src.substring(src.lastIndexOf('/')+1));
   });
   const save = (blob, name = 'image.png') => {
     console.log("save");
