@@ -80,9 +80,14 @@ download();
 
 
 ## Tester 
+* check number of images
+```javascript
+document.querySelectorAll('.FFVAD').length;
+```
+
+* check number of images
 ```javascript
 (function(global) {
-  // const next = () => document.querySelector('.search-pagination__button-text').click();
   const uuid = () => Math.random().toString(36).substring(7);
   const toBlob = (src) => new Promise((res) => {
     console.log(src);
@@ -91,7 +96,6 @@ download();
     console.log("save");
   };
   global.download = () => document.querySelectorAll('.FFVAD').forEach(async ({src}) => save(await toBlob(src), `${uuid()}.png`));
-  // global.next = () => next();
 })(window);
 
 download();
