@@ -95,9 +95,9 @@ document.querySelectorAll('.FFVAD').length;
   const save = (blob, name = 'image.png') => {
     console.log("save");
   };
-  global.download = () => document.querySelectorAll('.FFVAD').forEach(async ({src}) => save(await toBlob(src), `${uuid()}.png`));
+  global.download = (mySelector) => document.querySelectorAll(mySelector).forEach(async ({src}) => save(await toBlob(src), `${uuid()}.png`));
 })(window);
 
-download();
+download(".hCL");
 ```
 
