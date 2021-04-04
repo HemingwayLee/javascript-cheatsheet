@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>window object</title>
+    <script language="javascript" type="text/javascript">
+      function appendNode() {
+        const node = document.createElement("div");
+        const textnode = document.createTextNode("hello!!");
+        node.appendChild(textnode);
+        document.getElementById("res").appendChild(node);
+      }
+      
+      function gogogo() {
+        setInterval(appendNode, 1500);
+      }
+
+      function refreshMe1() {
+        window.location.href = window.location;
+      }
+
+      function refreshMe2() {
+        window.location.reload();
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="gogogo();">Set Interval</button>
+    <button onclick="refreshMe1();">Refresh Me 1</button>
+    <button onclick="refreshMe1();">Refresh Me 2</button>
+    <div id="res">
+    </div>
+  </body>
+</html>
+
