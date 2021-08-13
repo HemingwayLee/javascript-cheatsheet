@@ -37,15 +37,17 @@
       rootDiv.innerHTML = routes[pathname]
     }
 
-    // window.addEventListener('hashchange', function() { 
-    //   console.log("onpopstate");
-    //   rootDiv.innerHTML = routes[window.location.pathname];
-    // });
+    window.addEventListener('hashchange', function() { 
+      console.log("onpopstate");
+      rootDiv.innerHTML = routes[window.location.pathname];
+    });
 
     window.addEventListener('popstate', function() { 
       console.log("onhashchange");
       rootDiv.innerHTML = routes[window.location.pathname];
     });
+
+    onNavigate('/');
   </script>
 </body>
 </html>

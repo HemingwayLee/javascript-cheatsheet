@@ -8,9 +8,6 @@ python3 -m "http.server" 8888
 * access `http://127.0.0.1:8888` on browser
   * clicking a tag, it will switch pages
 
-* access `http://127.0.0.1:8888/#about` on browser
-  * it works because `popstate` event is fired
-
 * access `http://127.0.0.1:8888/about` on browser
   * it does not work, because the request sent to backend...
 
