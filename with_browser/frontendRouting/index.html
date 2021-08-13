@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Vanilla Router</title>
+  <script>
+    const about = "<h1>I am About Page.</h1>";
+    const home = "<h1>I am home Page.</h1>";
+    const contact = "<h1>I am contact Page.</h1>";
+  </script>
+</head>
+<body>
+  <ul class="navbar-list">
+    <li class="navbar-item"><a href="#" onclick="onNavigate('/about'); return false;">About</a></li>
+    <li class="navbar-item"><a href="#" onclick="onNavigate('/'); return false;">Home</a></li>
+    <li class="navbar-item"><a href="#" onclick="onNavigate('/contact'); return false;">Contact</a></li>
+  </ul>
+  <div id="root"></div>
+  <script>
+    const routes = {
+      '/' : home,
+      '/contact' : contact,
+      '/about' : about
+    };
+
+    const rootDiv = document.getElementById('root');
+    rootDiv.innerHTML = routes[window.location.pathname];
+
+    const onNavigate = (pathname) => {
+      window.history.pushState(
+        {},
+        pathname,
+        window.location.origin + pathname
+      )
+      rootDiv.innerHTML = routes[pathname]
+    }
+
+    // window.addEventListener('hashchange', function() { 
+    //   console.log("onpopstate");
+    //   rootDiv.innerHTML = routes[window.location.pathname];
+    // });
+
+    window.addEventListener('popstate', function() { 
+      console.log("onhashchange");
+      rootDiv.innerHTML = routes[window.location.pathname];
+    });
+  </script>
+</body>
+</html>
