@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LS</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    function allStorage() {
+      const keys = Object.keys(localStorage);
+      i = keys.length;
+      while ( i-- ) {
+        var div = document.createElement('div');
+        div.innerText = localStorage.getItem(keys[i]);
+        document.getElementById("root").appendChild(div);
+      }
+    }
+    allStorage();
+  </script>
+</body>
+</html>
