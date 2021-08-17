@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Service Worker</title>
+</head>
+<body>
+  <h1>Service Worker Demo</h1>
+  <!-- <input type="text" id="servicename"/> -->
+  <button class="btn btn-primary" onclick="addServiceWorker();">Add</button>
+  <button class="btn btn-primary" onclick="removeServiceWorker();">Remove</button>
+  <hr>
+  <div id="root"></div>
+  <script>
+    function msg2div(msg) {
+      var div = document.createElement("div");
+      div.innerText = msg;
+      document.getElementById("root").appendChild(div);
+    }
+
+    function addServiceWorker() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').then(function(registration) {
+          msg2div(`Service worker registered with scope: ${registration.scope}`);
+        }, function(err) {
+          msg2div(`ServiceWorker registration failed: ${err}`);
+        });
+      }
+    }
+    
+    function listServiceWorker() {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        registrations.forEach(function(v) { 
+          console.log(v);
+          msg2div(`registered service worker: + ${v.scope}`);
+        });
+      });
+    }
+
+    function removeServiceWorker() {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          msg2div(`remove service worker: + ${registration.scope}`);
+          registration.unregister();
+        } 
+      });
+    }
+
+    listServiceWorker();
+  </script>
+</body>
+</html>
