@@ -26,7 +26,7 @@
       $.ajax({
         type: "GET",
         url: "https://httpbin.org/get",
-        // headers: { hello: 'world', ywlee: 'me' },
+        headers: { hello: 'world', hola: 'world' },
         success: function (data) {
           $('#alerts').text(JSON.stringify(data));
         },
@@ -54,7 +54,7 @@
 
     function addServiceWorker() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(function(registration) {
+        navigator.serviceWorker.register('hook.js').then(function(registration) {
           msg2div(`Service worker registered with scope: ${registration.scope}`);
         }, function(err) {
           msg2div(`ServiceWorker registration failed: ${err}`);

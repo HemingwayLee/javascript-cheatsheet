@@ -1,11 +1,5 @@
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    fetch(event.request)
-  );
+  console.log(event.request);
+  console.log(event.request.headers);
+  console.log('!!now fetch!!');
 });
-
-// function fetchWithParamAddedToRequestBody(request) {
-//   console.log("!!!!!")
-//   fetch(request)
-// }
-
