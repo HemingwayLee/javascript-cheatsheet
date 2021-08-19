@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test</title>
+  <meta charset="utf-8">
+  <style>
+    .tableFixHead > table tr td { 
+      border: 2px solid red;
+    }
+  </style>
+  <script>
+    function addTable() {
+      var div = document.getElementsByClassName("tableFixHead")[0];
+      if (div) {
+        div.innerHTML = `
+          <table>
+            <thead><tr><th>Name</th><th>Age</th></tr></thead>
+            <tbody><tr><td>James</td><td>28</td></tr></tbody>
+          </table>
+        `;
+      }
+    }
+
+    function addRows(name='Kenny', age=30) {
+      var tbody = document.querySelector(".tableFixHead > table > tbody");
+      if (tbody) {
+        var tr = document.createElement("tr");
+        
+        tr.innerHTML = `<tr><td>${name}</td><td>${age}</td></tr>`;
+
+        tbody.append(tr);
+      }
+    }
+
+    function changeCss(height) {
+      var div = document.getElementsByClassName("tableFixHead")[0];
+      div.style.height = `${height}px`;
+    }
+  </script>
+</head>
+<body>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum facere voluptas soluta iste possimus, dolorum aliquam alias cupiditate nostrum placeat laudantium, culpa perferendis, laboriosam omnis neque aperiam! Voluptas, necessitatibus, ipsa.</p>
+  <div class="tableFixHead" style="height: 360px;">
+  </div>
+  <button onclick="addTable();">Add table</button>
+  <button onclick="addRows();">Add rows</button>
+  <button onclick="changeCss(500);">Add rows</button>
+</body>
+</html>
