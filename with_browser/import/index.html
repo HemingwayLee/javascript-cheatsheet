@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="res">
+  <!-- the script type must be module -->
+  <script type="module">
+    import { hello } from './foo.js';
+    hello("world");
+
+    import('./bar.js').then(module => {
+      module.hola('world');
+    });
+  </script>
+</body>
+</html>
