@@ -35,3 +35,7 @@
   * Continue parsing the document after loading and running the script
 
 
+# How javascript is executed with browser
+![demo](https://github.com/Hopding/js-visualizer-9000-client/raw/master/demo.gif)
+
+
