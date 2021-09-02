@@ -10,4 +10,6 @@ python3 -m "http.server" 8888
 
 * access `http://127.0.0.1:8888/about` on browser
   * it does not work, because the request sent to backend...
+  * We need a backend always returning index.html and handle 404 on frontend
+    * see `django-cheatsheet/frontend/frontendRouting`
 
