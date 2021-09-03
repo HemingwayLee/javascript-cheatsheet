@@ -14,6 +14,7 @@
   <!-- <input type="text" id="servicename"/> -->
   <button class="btn btn-primary" onclick="addServiceWorker();">Add</button>
   <button class="btn btn-primary" onclick="removeServiceWorker();">Remove</button>
+  <button class="btn btn-primary" onclick="postMsg2ServiceWorker();">PostMessage</button>
   <hr>
   <button class="btn btn-danger" onclick="sendAjax();">Ajax</button>
   <button class="btn btn-danger" onclick="reloadMe();">Refresh</button>
@@ -51,6 +52,15 @@
       div.innerText = msg;
       document.getElementById("root").appendChild(div);
     }
+    
+    function postMsg2ServiceWorker() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(registration => {
+          msg2div("Post Message now")
+          registration.active.postMessage(Math.random().toString());
+        });
+      }
+    }
 
     function addServiceWorker() {
       if ('serviceWorker' in navigator) {
@@ -59,6 +69,18 @@
         }, function(err) {
           msg2div(`ServiceWorker registration failed: ${err}`);
         });
+
+        // TODO: both not working
+        // msg2div(`Add event listener now...`);
+        
+        // navigator.serviceWorker.addEventListener('message', event => {
+        //   console.log(`??? ${event.data} ???`);
+        // });
+
+        // navigator.serviceWorker.onmessage = function (e) {
+        //   // messages from service worker.
+        //   console.log('??? e.data', e.data);
+        // };
       }
     }
     
