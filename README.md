@@ -13,6 +13,9 @@ jupyter notebook
 * Vue.js
 * Redux
 * Mocha
+* eslint
+* husky
+  * lint commit message and code
 
 
 ## installation
