@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CORS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript">
+      function appendNode(msg) {
+        let node = document.createElement("div");
+        node.innerText = msg
+        document.getElementById("res").appendChild(node);
+      }
+      
+      function cors() {
+        const urlTarget = "https://imaple.co/play/6276-5-5.html";
+    
+        $.ajax({
+          type: 'GET',
+          crossDomain: true,
+          // NOTO: does not work, jquery.min.js:2 Refused to set unsafe header "origin"
+          // headers: { 
+          //   'origin': 'https://imaple.co/play/',
+          //   'Access-Control-Allow-Origin': 'https://imaple.co/play/' 
+          // },
+          url: urlTarget,
+          success: function(data) {
+            appendNode("success!!");
+            console.log(data)
+          },
+          error: function(xhr, textStatus, errorThrown) {
+            appendNode("error!");
+            console.log(xhr.status)
+          },
+        });
+      }
+
+      function crossDomainRequest() {
+        
+        var iframe = document.createElement("iframe");
+        // var uniqueString = "CHANGE_THIS_TO_SOME_UNIQUE_STRING";
+        document.body.appendChild(iframe);
+        iframe.style.display = "none";
+        // iframe.contentWindow.name = uniqueString;
+
+        var form = document.createElement("form");
+        // form.target = uniqueString;
+        form.action = "https://imaple.co/play/6276-5-5.html";
+        form.method = "GET";
+        form.id = "hidden-form";
+
+        var input = document.createElement("input");
+        input.type = "hidden";
+        // input.name = "INSERT_YOUR_PARAMETER_NAME_HERE";
+        // input.value = "INSERT_YOUR_PARAMETER_VALUE_HERE";
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        // form.submit();
+
+        // should we put form into iframe...
+      }
+
+      function nocors() {
+        crossDomainRequest();
+
+        // $(document).on('submit','#hidden-form',function(){
+        //   console.log("trigger!!!")
+        // });
+
+        // const theForm = document.getElementById("hidden-form");
+        // theForm.submit()
+      }
+
+      function nocors2() {
+        // NOTE: not working well
+
+        $('#existing-form').ajaxForm({
+          url : 'https://imaple.co/play/6276-5-5.html', 
+          success : function (response) {
+            alert("The server says: " + response);
+          },
+          error: function(xhr, textStatus, errorThrown) {
+            appendNode("error!");
+            console.log(xhr.status)
+          },
+        });
+      }
+
+      function request() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://imaple.co/play/6276-5-5.html"); 
+        xhr.onload = function(event){ 
+          alert("Success, server responded with: " + event.target.response);
+        }; 
+        // or onerror, onabort
+        var formData = new FormData(document.getElementById("existing-form")); 
+        xhr.send(formData);
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="cors();">Has CORS</button>
+    <button onclick="nocors();">No CORS</button>
+    <button onclick="nocors2();">No CORS 2</button>
+    <button onclick="request();">No CORS Request</button>
+    <div id="res">
+    </div>
+    <form id="existing-form" action="GET"></form>
+  </body>
+</html>
+
