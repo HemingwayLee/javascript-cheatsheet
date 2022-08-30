@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Unicode txt load</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <input type="file" id="upload-txt" name="upload-txt"></input>
+    <input type="text" id="keyword" name="keyword"></input>
+    <button id="btnSearch" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Search</button>
+    <table id="res" border="1">
+      <thead>
+        <tr>
+          <td>char</td>
+          <td>length</td>
+          <td>point</td>
+          <td>code</td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <div id="msg"></div>
+    <script language="javascript" type="text/javascript">
+      let gRows = null;
+      
+      function appendNode(msg) {
+        const node = document.createElement("div");
+        const textnode = document.createTextNode(msg);
+        node.appendChild(textnode);
+        document.getElementById("msg").appendChild(node);
+      }
+
+      function toPoint(str) {
+        let res = '';
+        for (var i=0; i<str.length; ++i) {
+          res += `${str.codePointAt(i)}`;
+          if (i != str.length-1) {
+            res += ' '
+          }
+        }
+
+        return res
+      }
+
+      function toCode(str) {
+        let res = '';
+        for (var i=0; i<str.length; ++i) {
+          res += `0x${str.codePointAt(i).toString(16).toUpperCase()}`;
+          if (i != str.length-1) {
+            res += ' '
+          }
+        }
+
+        return res
+      }
+
+      async function handleTxtData(data, name) {
+        const rows = data.split('\n');
+        gRows = rows;
+
+        $('#res > tbody').empty();
+        $.each(rows, function(idx, ele) {
+          const char = ele;
+
+          let tr = $("<tr>").append(
+            $("<td>").text(char),
+            $("<td>").text(char.length),
+            $("<td>").text(toPoint(char)),
+            $("<td>").text(toCode(char))
+          );
+          
+          $("#res > tbody").append(tr);
+        });
+      }
+
+      async function ReadFile(file) {
+        return await file.text()
+      }
+
+      function handleTxtFiles(e) {  
+        const selectedFile = e.target.files[0];
+        console.log(selectedFile);
+
+        const promise = new Promise(resolve => {
+          const fileContent = ReadFile(selectedFile);
+          resolve(fileContent);
+        });
+
+        promise.then(fileContent => {
+          const filename = selectedFile.name;
+          handleTxtData(fileContent, selectedFile.name);
+
+        });
+      }
+
+      $('#btnSearch').click(function() {
+        const keyword = $('#keyword').val()
+        appendNode(`search for ${keyword}`)
+        appendNode(`point is ${toPoint(keyword)}`)
+      })
+
+      document.getElementById('upload-txt').addEventListener('change', handleTxtFiles);
+    </script>
+  </body>
+</html>

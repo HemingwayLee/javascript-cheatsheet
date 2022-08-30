@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Unicode problem</title>
+    <script language="javascript" type="text/javascript">
+      function appendNode(id, msg) {
+        const node = document.createElement("div");
+        const textnode = document.createTextNode(msg);
+        node.appendChild(textnode);
+        document.getElementById(id).appendChild(node);
+      }
+      
+      function go2code() {
+        appendNode('resCode', 'aaa')
+      }
+
+      function go2char() {
+        appendNode('resChar', 'aaa')
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <td>char to utf-8</td>
+          <td>utf-8 to char</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><textarea id="char2code" cols="30" rows="12"></textarea></td>
+          <td><textarea id="code2char" cols="30" rows="12"></textarea></td>
+        </tr>
+        <tr>
+          <td><button onclick="go2code();">Convert</button></td>
+          <td><button onclick="go2char();">Convert</button></td>
+        </tr>
+        <tr>
+          <td><div id="resCode"></div></td>
+          <td><div id="resChar"></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
