@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <meta charset="utf-8" />
+  <title>Block Test</title>
+  <script>
+  function block() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        //we get the response first, but it will be blocked by the loop below....
+        writeToScreen("response from the server");
+      }
+    };
+    //we need to use
+    // ../node/hello_cors.js
+    // ../node/hello.js is not ok
+    xhttp.open("GET", "http://127.0.0.1:3000/", true);
+    xhttp.send();
+
+    writeToScreen("Get into loop...");
+
+    var total = 0;
+    for (var k = 1; k < 15; ++k) {
+      for (var j = 1; j < 10000; ++j) {
+        for (var i = 1; i < 10000; ++i) {
+          total = Math.sqrt(Math.random());
+        }
+      }
+    }
+    writeToScreen(total.toString());
+  }
+
+  function writeToScreen(message) {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.appendChild(pre);
+  }
+
+  </script>
+
+  <h2>Block Test</h2>
+  <br>
+  <input type="button" onclick="block();" value="Block"></input>
+
+  <div id="output"></div>
